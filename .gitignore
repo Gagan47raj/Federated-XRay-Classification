@@ -1,15 +1,23 @@
+# Virtual Environment
 venv/
+
+# Python
 __pycache__/
 *.pyc
 
+# Dataset
 data/
-datasets/
 
+# Jupyter
 .ipynb_checkpoints/
 
-results/
-
-.env
-
-.idea/
+# IDE
 .vscode/
+.idea/
+
+# Model files
+*.pth
+*.pt
+
+# Logs
+logs/
