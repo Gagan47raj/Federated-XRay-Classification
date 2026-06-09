@@ -1,0 +1,3 @@
+Dataset,Images,Normal,Pneumonia
+Train,4172,1073,3099
+Validation,1044,268,776
