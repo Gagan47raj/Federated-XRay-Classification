@@ -23,6 +23,7 @@ train_transform = transforms.Compose([
         degrees=0,
         translate=(0.05, 0.05)
     ),
+    transforms.ColorJitter(brightness=0.1, contrast=0.1),
 
     transforms.ToTensor(),
 

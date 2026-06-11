@@ -31,6 +31,7 @@ class BaselineCNN(nn.Module):
             nn.ReLU(inplace=True),
 
             nn.MaxPool2d(2),
+            nn.Dropout2d(0.1),
 
             # Block 2
             nn.Conv2d(
@@ -54,6 +55,7 @@ class BaselineCNN(nn.Module):
             nn.ReLU(inplace=True),
 
             nn.MaxPool2d(2),
+            nn.Dropout2d(0.2),
 
             # Block 3
             nn.Conv2d(
@@ -76,7 +78,8 @@ class BaselineCNN(nn.Module):
             nn.BatchNorm2d(128),
             nn.ReLU(inplace=True),
 
-            nn.MaxPool2d(2)
+            nn.MaxPool2d(2),
+            nn.Dropout2d(0.2)
         )
 
         self.pool = nn.AdaptiveAvgPool2d((1, 1))
