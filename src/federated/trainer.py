@@ -1,5 +1,15 @@
+import sys
+from pathlib import Path
 import torch
+
+ROOT = Path(r"C:\Users\gagan\Desktop\Federated Learning\federated-xray-classification")
+
+sys.path.insert(0, str(ROOT))
+
 import os
+
+MODEL_DIR = Path(__file__).resolve().parents[1] / "models"
+MODEL_DIR.mkdir(exist_ok=True)
 
 from src.training.trainer import validate
 
@@ -89,8 +99,7 @@ def federated_training(
 
                 torch.save(
                     server.global_model.state_dict(),
-                    "../models/federated_cbam_best.pth"
-                    
+                    MODEL_DIR / "federated_cbam_best.pth"
                 )
 
                 print(
