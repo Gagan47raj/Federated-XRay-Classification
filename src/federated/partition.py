@@ -1,4 +1,6 @@
 import numpy as np
+from sklearn.model_selection import StratifiedKFold
+
 
 
 def create_client_partitions(
@@ -7,33 +9,28 @@ def create_client_partitions(
         num_clients=5,
         seed=42
 ):
-    np.random.seed(seed)
 
-    indices = np.arange(len(image_paths))
-    np.random.shuffle(indices)
+    image_paths = np.array(image_paths)
+    labels = np.array(labels)
 
-    client_indices = np.array_split(
-        indices,
-        num_clients
+    skf = StratifiedKFold(
+        n_splits=num_clients,
+        shuffle=True,
+        random_state=seed
     )
 
     clients = {}
-    
-    for client_id, idx in enumerate(client_indices):
 
-        client_paths = [
-            image_paths[i]
-            for i in idx
-        ]
+    for i, (_, idx) in enumerate(
+            skf.split(image_paths, labels)
+    ):
 
-        client_labels = [
-            labels[i]
-            for i in idx
-        ]
+        clients[f"client_{i+1}"] = {
 
-        clients[f"client_{client_id+1}"] = {
-            "paths": client_paths,
-            "labels": client_labels
+            "paths": image_paths[idx].tolist(),
+
+            "labels": labels[idx].tolist()
+
         }
 
     return clients

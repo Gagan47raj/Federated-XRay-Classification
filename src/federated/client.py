@@ -37,6 +37,13 @@ class FederatedClient:
             lr=lr
         )
 
+        self.scheduler = optim.lr_scheduler.ReduceLROnPlateau(
+            self.optimizer,
+            mode='min',
+            factor=0.5,
+            patience=2
+        )
+
     def train(
             self,
             epochs=1
@@ -54,6 +61,8 @@ class FederatedClient:
                 self.optimizer,
                 self.device
             )
+
+            self.scheduler.step(loss)
 
             losses.append(loss)
             accuracies.append(acc)
