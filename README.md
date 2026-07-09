@@ -458,7 +458,7 @@ This project demonstrates:
 Clone repository:
 
 ```bash
-git clone https://github.com/yourusername/pneumonia-federated-cbam.git
+git clone https://github.com/Gagan47raj/Federated-XRay-Classification.git
 
 cd pneumonia-federated-cbam
 ```
